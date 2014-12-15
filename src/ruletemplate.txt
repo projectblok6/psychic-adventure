@@ -1,0 +1,13 @@
+declare
+  l_passed boolean := true;
+  %declarations%
+begin
+  if l_oper in (%triggerevents%) then
+    %selectstatements%
+    l_passed := %operator%
+    if not l_passed then
+      l_error_stack := l_error_stack || '%errormessage%';
+    end if;
+  end if;
+end;
+%endloop%
