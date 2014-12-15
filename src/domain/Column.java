@@ -1,14 +1,26 @@
 package domain;
 
 public class Column implements Component {
-	private String col;
+	private String columnName;
+	private String tableName;
 	
-	public Column(String c){
-		this.col = c;
+	public Column(String c, String t){
+		this.columnName = c;
+		this.tableName = t;
 	}
-	
+
 	@Override
-	public String getString(){
-		return col;
+	public String getValue() {
+		return null;
+	}
+
+	@Override
+	public String getTable() {
+		return tableName;
+	}
+
+	@Override
+	public String getColumn() {
+		return columnName;
 	}
 }

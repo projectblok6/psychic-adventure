@@ -1,26 +1,22 @@
-import java.util.ArrayList;
-
-import domain.Component;
-import domain.Operator;
-import domain.Value;
-import domain.businessrule.BusinessRule;
-import domain.businessrule.RangeRule;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
 
 
 public class test {
 
 	public static void main(String[] args) {
-		ArrayList<String> triggerEvents = new ArrayList<String>();
-		triggerEvents.add("UPD");
-		triggerEvents.add("INS");
-		
-		Component component1 = new Value();
-		Component component2 = new Value();
-		Component component3 = new Value();
-		
-		
-		BusinessRule test1 = new RangeRule(triggerEvents, "fout in de code", component1, component2, component3);
-		test1.getGeneratedRule();
+		FileReader file = null;
+		try {
+			file = new FileReader("src/plsqltemplate.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BufferedReader br = new BufferedReader(file);
+		Scanner lineScanner = new Scanner(br);
+		System.out.println(lineScanner.findInLine("%rulname%"));
 	}
 
 }
