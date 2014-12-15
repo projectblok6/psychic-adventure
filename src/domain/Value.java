@@ -6,18 +6,9 @@ public class Value implements Component {
 	public Value(String s){
 		this.val = s;
 	}
+	
 	@Override
-	public String getValue() {
+	public String getString(){
 		return val;
-	}
-
-	@Override
-	public String getTable() {
-		return null;
-	}
-
-	@Override
-	public String getColumn() {
-		return null;
 	}
 }
