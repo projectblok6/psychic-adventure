@@ -44,7 +44,7 @@ public class RangeRule implements BusinessRule{
 			String line = sc.nextLine();
 			ruleString += line + "\n";
 		}
-		String triggerLine
+		String triggerLine;
 		for(String triggerEvent : triggerEvents){
 			
 		}
