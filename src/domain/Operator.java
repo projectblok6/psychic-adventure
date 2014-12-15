@@ -7,4 +7,7 @@ public class Operator {
 		this.operatorName = operatorName;
 		this.logicalOperator = logicalOperator;
 	}
+	public String toString(){
+		return logicalOperator;
+	}
 }

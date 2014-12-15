@@ -17,23 +17,20 @@ public class RangeRule implements BusinessRule {
 	private ArrayList<Component> components;
 	private String errorMessage;
 
-	public RangeRule(ArrayList<String> triggerEvents, String errorMessage, ArrayList<Component> components) {
+	public RangeRule(ArrayList<String> triggerEvents, String errorMessage, ArrayList<Component> components, Operator operator) {
 		this.triggerEvents = triggerEvents;
 		this.errorMessage = errorMessage;
 		this.components = components;
+		this.operator = operator;
 	}
 
 	public String getGeneratedRule() {
-		String ruleString = getTemplate("src/ruletemplate.txt");
-		
-		
+		String ruleString = getTemplate("src/ruletemplate.txt");	
 		ruleString = ruleString.replaceAll("%errormessage%", errorMessage);
 		ruleString = ruleString.replaceAll("%triggerevents%", getTriggerLine());
 		ruleString = ruleString.replaceAll("%declarations%", getDeclarationsLine());
 		ruleString = ruleString.replaceAll("%selectstatements%", getSelectLine());
-		
-		System.out.println(ruleString);
-
+		ruleString = ruleString.replaceAll("%comparison%", getComparisonLine());
 		return ruleString;
 	}
 
@@ -61,7 +58,7 @@ public class RangeRule implements BusinessRule {
 		for (String triggerEvent : triggerEvents) {
 			triggerLine += triggerEvent + ", ";
 		}
-		return triggerLine;
+		return triggerLine.substring(0, triggerLine.length() - 2);
 	}
 	
 	private String getDeclarationsLine(){
@@ -79,4 +76,13 @@ public class RangeRule implements BusinessRule {
 		}
 		return declarationLine;
 	}
+	
+	private String getComparisonLine(){
+		String comparison = "";
+		comparison += components.get(0).getString() + " " + operator.toString()
+				+ " "  + components.get(1).getString() + " and " 
+				+ components.get(2).getString();
+		return comparison;
+	}
+	
 }

@@ -11,20 +11,7 @@ begin
   elsif deleting then
     l_oper := 'DEL';
   end if;
-  %startloop%
-  declare
-    l_passed boolean := true;
-    %declarations%
-  begin
-    if l_oper in (%triggerevents%) then
-      %selectstatements%
-      l_passed := %operator%
-      if not l_passed then
-        l_error_stack := l_error_stack || '%errormessage%';
-      end if;
-    end if;
-  end;
-  %endloop%
+  %businessrules%
   if l_error_stack is not null then
     raise_application_error ( -20800, l_error_stack );
   end if;
