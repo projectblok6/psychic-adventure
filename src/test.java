@@ -14,12 +14,12 @@ public class test {
 		triggerEvents.add("UPD");
 		triggerEvents.add("INS");
 		
-		Component component1 = new Value();
-		Component component2 = new Value();
-		Component component3 = new Value();
+		ArrayList<Component> components = new ArrayList<Component>();
+		components.add(new Value("value1"));
+		components.add(new Value("value2"));
+		components.add(new Value("value3"));
 		
-		
-		BusinessRule test1 = new RangeRule(triggerEvents, "fout in de code", component1, component2, component3);
+		BusinessRule test1 = new RangeRule(triggerEvents, "fout in de code", components);
 		test1.getGeneratedRule();
 	}
 
